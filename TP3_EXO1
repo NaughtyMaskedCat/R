@@ -1,0 +1,38 @@
+####Partie 1
+#####On reprend la colonne taille du data frame IMCEnfants
+imc_kid = read.table(file = "C:/Users/castr/OneDrive/Documents/Master 1 Bioinformatique/Statistique/R/imcenfant.txt", header = TRUE, dec = "," )
+Taille = as.numeric(imc_kid$taille)
+#####1.	Partager la fenêtre graphique en 9 sous fenêtres
+par(mfrow=c(3,3))
+####divise la fenêtre graphique en 6 
+
+#####2.	Tracer d’abord l’histogramme des données taille, puis tracer 8 histogrammes de données simulées : vecteur de même taille que « taille », même moyenne et même écart-type, simulé suivant une loi normale. 
+hist(Taille, freq = FALSE, mean = "Taille Histogramme")
+curve(dnorm(x, mean = 100.748 , sd = 4.234547), add = TRUE, col = "blue")
+sd(Taille)
+mean(Taille)
+simul = rnorm(152 ,mean = 100.748, sd =  4.234547)
+for (i in 1:9){
+hist(simul, freq =FALSE, main = "Taille Simulée")
+curve(dnorm(x,mean = 100.748 , sd = 4.234547), add = TRUE, col = "red")
+}
+#####3.	On pourra superposer à ces histogrammes la courbe théorique de la loi normale.
+##### Oui, on semble obtenir la même distribution des données
+#####4.	Commenter
+#####5.	Refaire les questions 1->4 en remplaçant « normale » par d’autres lois. Commenter
+#### En essayant de faire avec une binomiale, mais ici elle n'est pas très adaptée car c'est une loi discrète
+#### On va plutôt s'intéresser à des lois continues, par exemple l'exponentielle
+####Regarder espérence de la loi, ecart type 
+####Jetter un oeil sur statsnet et en choisir une
+lambda = 1/100.748 
+#### 1/moyenne = lambda
+simul_exp= rexp(152, lambda)
+hist(simul_exp, freq = FALSE)
+curve(dexp(x, lambda), add = TRUE, col = "green")
+
+simul_pois = rpois(152, lambda)
+hist(simul_pois, freq = FALSE)
+curve(dpois(x, lambda), add = TRUE, col = "purple")
+#####6.	Remplacer l’histogramme par un autre graphique : qqplot(), qqnorm.
+qqnorm(Taille, freq = FALSE)
+qqline(Taille, col = "brown")
