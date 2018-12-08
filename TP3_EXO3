@@ -1,0 +1,46 @@
+####Partie 3
+
+####On s'attachera dans la suite à définir de façon précise les notions statistiques en gras avant de répondre aux questions posées
+
+####1.	Importer le fichier de donnees jeu3.txt. Ce jeu de données est le résultat d'une enquete nutritionnelle sur 226 personnes agées résidant à bordeaux, en 2000.
+""
+"Utiliser la fonction names() pour lister les variables de ce jeu de données. Les variables sont les suivantes :
+  situation : 1 =seul 2 =en couple 3 =en famille 4 =autre type de cohabitation
+the : nombre de tasse de thé par jour
+cafe : nombre de tasse de café par jour
+consommation de viande poisson, fruits-crus...chocolat : 0=jamais 1 =moins d'une fois /semaine 2=une fois/semaine 3= 2/3  fois/semaine 4= 5/6  fois/semaine 5=tous les jours
+matgras  1=beurre 2=margarine 3= huile d'arachide 4=tournesol 5=olive 6 =melange d'huiles 7=colza 8= graisse canard ou oie
+"""
+jeu = read.table(file = "C:/Users/castr/OneDrive/Documents/Master 1 Bioinformatique/Statistique/R/jeu3.txt.txt", header = TRUE, dec = "," )
+names(jeu)
+####2.	donner le mode de la variable situation, de la variable taille, de la variable chocol.
+mode(jeu$situation)
+mode(jeu$taille)
+mode(jeu$chocol)
+####3.	Choisissez des classes pour la variable taille  et donner la classe modale.
+#### le mode (ou la classe modale), c'est-à-dire la valeur (ou la classe) ayant le plus grand effectif
+class(jeu$taille)
+classmodale <- max(jeu$taille)
+classmodale
+####4.	Calculer la médiane de la variable situation  et de la variable chocol.
+median(jeu$situation)
+median(jeu$chocol)
+####5.	Faire un tri à plat de la variable chocol et de la variable fruits_crus( fonction table())
+table(jeu$chocol)
+table(jeu$fruit_crus)
+####6.	En vous fondant uniquement sur les tris à plat, donnez la médiane de ces deux variables.
+median(table(jeu$chocol))
+median(table(jeu$fruit_crus))
+####7.	Calculer les quartiles de la variable taille en utilisant les classes choisies précédemment.
+
+####8.	Tracer le polygone des fréquences cumulées de la variable taille et évaluer, sur le graphique, les quartiles de la distribution.
+####9.	Calculer la moyenne des variables situation,  chocol et taille.
+####10.	En vous fondant sur le tri à plat de la variable chocol, calculez en la moyenne.
+####11.	Faire le tri à plat de la variable the, et en utilisant ce tri, calculer la moyenne.
+####12.	Calculer la moyenne de la variable taille en utilisant les classes définies précédemment.
+####13.	Calculer l'étendue de la variable chocol
+####14.	Calculer l'étendue de la variable poids
+####15.	Tracer le boxplot de la variable poids
+####16.	Calculer l'écart-type de la variable situation.
+####17.	Calculer, en utilisant les données individuelles, l'écart-type de la variable taille.
+####18. En vous fondant uniquement sur le tri à plat de la variable the, calculez-en le coefficient de variation.
