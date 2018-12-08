@@ -20,8 +20,15 @@ mode(jeu$chocol)
 ####3.	Choisissez des classes pour la variable taille  et donner la classe modale.
 #### le mode (ou la classe modale), c'est-à-dire la valeur (ou la classe) ayant le plus grand effectif
 class(jeu$taille)
-classmodale <- max(jeu$taille)
-classmodale
+t_n <- as.numeric(jeu$taille)
+t_f <- as.factor(jeu$taille)
+#calculer la classe modale comme r ne semble pas possèder de fonction propre pour la calculer  
+getmode <- function(v) {
+  uniqv <- unique(v)
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+c_m <- getmode(jeu$taille)
+c_m 
 ####4.	Calculer la médiane de la variable situation  et de la variable chocol.
 median(jeu$situation)
 median(jeu$chocol)
@@ -32,15 +39,37 @@ table(jeu$fruit_crus)
 median(table(jeu$chocol))
 median(table(jeu$fruit_crus))
 ####7.	Calculer les quartiles de la variable taille en utilisant les classes choisies précédemment.
-
+quantile(jeu$taille)
+quantile(t_n)
+#quantile(t_f) facteurs non autorisés
 ####8.	Tracer le polygone des fréquences cumulées de la variable taille et évaluer, sur le graphique, les quartiles de la distribution.
+#Explications: http://www.r-tutor.com/elementary-statistics/quantitative-data/cumulative-frequency-graph
+#Besoin en premier des tris à plat de la variable table
+table_t <- table(jeu$taille)
+cumfreq_t = c(0, cumsum(table_t))
+plot(cumfreq_t, main="Polygone des frquences cumulées Jeu$Taille", xlab="", ylab="") 
+lines(cumfreq_t)
 ####9.	Calculer la moyenne des variables situation,  chocol et taille.
+mean(jeu$situation)
+mean(jeu$chocol)
+mean(jeu$taille)
 ####10.	En vous fondant sur le tri à plat de la variable chocol, calculez en la moyenne.
+mean(table(jeu$chocol))
 ####11.	Faire le tri à plat de la variable the, et en utilisant ce tri, calculer la moyenne.
+mean(table(jeu$the))
 ####12.	Calculer la moyenne de la variable taille en utilisant les classes définies précédemment.
+mean(as.numeric(jeu$taille))
 ####13.	Calculer l'étendue de la variable chocol
+range(jeu$chocol,  finite = TRUE, na.rm = TRUE)
 ####14.	Calculer l'étendue de la variable poids
+range(jeu$poids)
 ####15.	Tracer le boxplot de la variable poids
+boxplot(jeu$poids, main = "Poids", ylab = "Repartition des poids")
 ####16.	Calculer l'écart-type de la variable situation.
+sd(jeu$situation)
 ####17.	Calculer, en utilisant les données individuelles, l'écart-type de la variable taille.
+sd(jeu$taille)
 ####18. En vous fondant uniquement sur le tri à plat de la variable the, calculez-en le coefficient de variation.
+sd(jeu$the, na.rm=TRUE)/ 
+  mean(jeu$the, na.rm=TRUE)*100
+
