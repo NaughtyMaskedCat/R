@@ -1,0 +1,17 @@
+####Loi de la moyenne et de la variance empiriques
+
+####Fonctions à utiliser :   apply(), replicate()
+par(mfrow=c(2,3))
+####a) Générer 100 échantillons de taille n=10 issus de la loi normale de paramètres 3 et 1
+r = replicate(10, rnorm(100, 3, 1))
+####b) Pour chaque échantillon calculer la moyenne et la variance empirique et tracer l’histogramme des moyennes, celui des variances. Que peut-on observer ?
+m = apply(r,1, mean)
+v = apply(r,1, var)
+hist(m, freq = F)
+hist(v, freq = F)
+####c) Refaire le même essai en remplaçant loi normale par une loi  de Poisson de paramètre 5.
+r_p = replicate(10, rpois(100, 5))
+m_p = apply(r_p,1, mean)
+v_p = apply(r_p,1, var)
+hist(m_p, freq = F)
+hist(v_p, freq = F)
